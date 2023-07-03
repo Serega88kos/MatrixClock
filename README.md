@@ -1,8 +1,6 @@
 ### Описание проекта
 
-Данный проект является продолжением проекта [Большие часы 64х32, ESP32](https://community.alexgyver.ru/threads/bolshie-chasy-na-ws2812-esp8266-narodnyj-monitoring.5067/)
-
-перенесенный на платформу GyverHub.
+Данный проект является продолжением проекта [Большие часы 64х32, ESP32](https://community.alexgyver.ru/threads/bolshie-chasy-na-ws2812-esp8266-narodnyj-monitoring.5067/) перенесенный на платформу GyverHub.
 
 Прошивку можно обновлять автоматически, для тех.
 
