@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#define VF "Serega88kos/MatrixClock@1.0"  // версия прошивки
+#define VF "Serega88kos/MatrixClock@1.1"  // версия прошивки
 
 struct Wifi {
   char ssid[32] = "";

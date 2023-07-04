@@ -1,6 +1,6 @@
 void wifi_connected() {
   WiFi.mode(WIFI_STA);
-  byte tries = 60;
+  byte tries = 30;
   WiFi.begin(w.ssid, w.pass);
   while (--tries && WiFi.status() != WL_CONNECTED) {
     Serial.print F(".");

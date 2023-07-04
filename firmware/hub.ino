@@ -1,4 +1,3 @@
-
 void build() {
   hub.BeginWidgets();
   hub.WidgetSize(100);
@@ -45,14 +44,12 @@ void build() {
         flag_o |= hub.Switch(&o.sens_bme, F("Датчик BME"));
         flag_o |= hub.Switch(&o.auto_bright, F("Автояркость"));
         flag_o |= hub.Switch(&o.min_max, F("Инверсия яркости"));
-
         hub.Title(F("Яркость"));
         hub.WidgetSize(25);
         hub.Label_(F("new_bright"), String(new_bright), F("Текущая"), GH_DEFAULT, 20);
         flag_o |= hub.Spinner(&o.min_bright, GH_FLOAT, F("Минимальная"), 0, 255, 1);
         flag_o |= hub.Spinner(&o.max_bright, GH_FLOAT, F("Максимальная"), 10, 255, 1);
         flag_o |= hub.Spinner(&o.brg, GH_FLOAT, F("Задержка, в сек."), 0, 30, 1);
-
         hub.Title(F("Корректировка показаний"));
         hub.WidgetSize(25);
         hub.Label(String(FtempH), F("Комнатная"), GH_DEFAULT, 20);
