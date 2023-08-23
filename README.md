@@ -1,3 +1,10 @@
+# ВНИМАНИЕ 
+на август 2023 необходимо обновить библиотеку GyverHub и установить прошивку через кабель
+
+библиотеку Саня еще разрабатывает, поэтому терпим неудобства))
+
+https://github.com/GyverLibs/GyverHub/archive/refs/heads/main.zip
+
 ### Описание проекта
 
 Данный проект является продолжением проекта [Большие часы 64х32, ESP32](https://community.alexgyver.ru/threads/bolshie-chasy-na-ws2812-esp8266-narodnyj-monitoring.5067/) перенесенный на платформу GyverHub.
