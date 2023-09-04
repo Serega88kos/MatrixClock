@@ -4,9 +4,9 @@ void TempHome() {
   //Serial.print F("Дом: ");  Serial.println(FtempH);
   display->setFont(&asm_6x5);
   display->setTextColor(text_col);
-  display->setCursor(28, 7);
+  display->setCursor(28, 9);
   display->print("dom");
-  display->setFont(&asm_10x6b);
+  display->setFont(&asm_10x6);
   display->setTextColor(home_col);
   display->setCursor(45, 9);
   display->print(tempH);
@@ -19,27 +19,12 @@ void TempStreet() {
   //Serial.print F("Улица: "); Serial.println(FtempS);
   display->setFont(&asm_6x5);
   display->setTextColor(text_col);
-  display->setCursor(1, 7);
+  display->setCursor(1, 9);
   display->print("ul");
-  display->setFont(&asm_10x6b);
-  display->setTextColor(home_col);
+  display->setFont(&asm_10x6);
+  display->setTextColor(street_col);
   display->setCursor(12, 9);
   display->print(tempS);
-}
-
-void Hum() {
-  if (o.sens_bme) {
-    hum = bmp.readHumidity();
-    //Serial.print F("Влажность: "); Serial.println(hum);
-  }
-  display->setFont(&asm_6x5);
-  display->setTextColor(text_col);
-  display->setCursor(1, 7);
-  display->print("vl");
-  display->setFont(&asm_10x6b);
-  display->setTextColor(home_col);
-  display->setCursor(12, 9);
-  display->print(hum);
 }
 
 void Press() {
@@ -48,10 +33,25 @@ void Press() {
   pres = Fpres;
   display->setFont(&asm_6x5);
   display->setTextColor(text_col);
-  display->setCursor(28, 7);
+  display->setCursor(28, 9);
   display->print("dav");
-  display->setFont(&asm_10x6b);
-  display->setTextColor(home_col);
+  display->setFont(&asm_10x6);
+  display->setTextColor(press_col);
   display->setCursor(43, 9);
   display->print(pres);
+}
+
+void Hum() {
+  if (o.sens_bme) {
+    hum = bmp.readHumidity();
+    //Serial.print F("Влажность: "); Serial.println(hum);
+    display->setFont(&asm_6x5);
+    display->setTextColor(text_col);
+    display->setCursor(1, 9);
+    display->print("vl");
+    display->setFont(&asm_10x6);
+    display->setTextColor(hum_col);
+    display->setCursor(12, 9);
+    display->print(hum);
+  }
 }

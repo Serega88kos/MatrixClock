@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#define VF "Serega88kos/MatrixClock@1.1"  // версия прошивки
+#define VF "Serega88kos/MatrixClock@1.2"  // версия прошивки
 
 struct Wifi {
   char ssid[32] = "";
@@ -23,7 +23,8 @@ struct Other {
   int max_bright = 200;  // максимальная яркость (0 - 255)
   int brg = 10;          // как часто проверять изменение по датчику освещенности в сек
   bool min_max = false;
-  bool sens_bme = false;      // если модуль bme, то true, иначе false
+  bool sens_bme = false;  // если модуль bme, то true, иначе false
+  int interval = 5;
 };
 Other o;
 
@@ -36,3 +37,14 @@ struct Monitoring {
   bool nm_hum = false;      // включить отправку показаний влажности
 };
 Monitoring m;
+
+struct Color {
+  GHcolor color_minus{ 0, 255, 255 };
+  GHcolor color_clock{ 0, 255, 255 };
+  GHcolor color_home{ 255, 211, 0 };
+  GHcolor color_street{ 99, 99, 209 };
+  GHcolor color_press{ 252, 150, 7 };
+  GHcolor color_hum{ 189, 53, 211 };
+  GHcolor color_text{ 197, 187, 187 };
+};
+Color col;

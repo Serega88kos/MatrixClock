@@ -36,14 +36,37 @@ void build() {
         }
       }
       break;
+
     case 1:
       {
         hub.Title(F("Различные настройки"));
-        hub.WidgetSize(33);
+        hub.WidgetSize(50);
         bool flag_o = 0;
         flag_o |= hub.Switch(&o.sens_bme, F("Датчик BME"));
+        flag_o |= hub.Spinner(&o.interval, GH_INT32, F("Смена показаний, сек"), 2, 60, 1);
         flag_o |= hub.Switch(&o.auto_bright, F("Автояркость"));
         flag_o |= hub.Switch(&o.min_max, F("Инверсия яркости"));
+
+        hub.Title(F("Выбор цвета"));
+        hub.WidgetSize(33);
+        bool flag_color = 0;
+        flag_color |= hub.Color(&col.color_clock, F("Часы"));
+        flag_color |= hub.Color(&col.color_text, F("Текст"));
+        flag_color |= hub.Color(&col.color_home, F("Дом. темп."));
+        flag_color |= hub.Color(&col.color_street, F("Ул. темп."));
+        flag_color |= hub.Color(&col.color_press, F("Давление"));
+        flag_color |= hub.Color(&col.color_hum, F("Влажность"));
+
+        if (flag_color) {
+          clock_col = display->color565(col.color_clock.r, col.color_clock.g, col.color_clock.b);      // часы
+          text_col = display->color565(col.color_text.r, col.color_text.g, col.color_text.b);          // текст
+          home_col = display->color565(col.color_home.r, col.color_home.g, col.color_home.b);          // дом темп-ра
+          street_col = display->color565(col.color_street.r, col.color_street.g, col.color_street.b);  // уличная темп-ра
+          press_col = display->color565(col.color_press.r, col.color_press.g, col.color_press.b);      // давление
+          hum_col = display->color565(col.color_hum.r, col.color_hum.g, col.color_hum.b);              // влажность
+          color_.update();
+        }
+
         hub.Title(F("Яркость"));
         hub.WidgetSize(25);
         hub.Label_(F("new_bright"), String(new_bright), F("Текущая"), GH_DEFAULT, 20);
@@ -66,6 +89,7 @@ void build() {
         }
       }
       break;
+
     case 2:
       {
         hub.EndWidgets();
@@ -86,5 +110,6 @@ void build() {
       }
       break;
   }
+  
   hub.EndWidgets();
 }

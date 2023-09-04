@@ -11,10 +11,13 @@ void NarodMonitoring() { //функция для народного монито
   if (m.nm_pres) {
     buf = buf + "\n#T3#" + Fpres;
   }
+  if (m.nm_hum) {
+    buf = buf + "\n#T4#" + hum;
+  }
   buf = buf + "\n##";
   WiFiClient client;
   client.connect("narodmon.ru", 8283);
   client.print(buf);
   //Вывод в монитор порта
-  Serial.println((String) + "Показания отправлены! " + FtempH + " | " + FtempS + " | " + Fpres);
+  Serial.println((String) + "Показания отправлены! " + FtempH + " | " + FtempS + " | " + Fpres + " | " + hum);
 }
