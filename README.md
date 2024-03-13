@@ -1,5 +1,3 @@
-https://github.com/GyverLibs/GyverHub/archive/refs/heads/main.zip
-
 ### Описание проекта
 
 Данный проект является продолжением проекта [Большие часы 64х32, ESP32](https://community.alexgyver.ru/threads/bolshie-chasy-na-ws2812-esp8266-narodnyj-monitoring.5067/) перенесенный на платформу GyverHub.
@@ -8,7 +6,7 @@ https://github.com/GyverLibs/GyverHub/archive/refs/heads/main.zip
 
 ### Зависимости
 Для работы GyverHub нужно установить ещё несколько библиотек:
-[[wiki GyverHub](https://github.com/GyverLibs/GyverHub/wiki/2.-%D0%9D%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B#%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8)](https://github.com/GyverLibs/GyverHub/wiki/2.-%D0%9D%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B)
+[wiki GyverHub](https://github.com/GyverLibs/GyverHub/wiki/2.-%D0%9D%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B)
 
 ### Железо
 
@@ -39,3 +37,4 @@ https://github.com/GyverLibs/GyverHub/archive/refs/heads/main.zip
 4.09.23 Исправление ошибок. Изменение кода. Добавлены виджеты управления цветом каждого датчика. Изменение шрифта датчиков. Изменение положения всех элементов на дисплее. Больше не помню))
 
 баг: после рестарта цвета по заводу, нужно зайти и сохранить цвет в любом виджете, цвета восстановятся)
+13.03.24 v1.3 Обновление бибилиотеки GyverHub
