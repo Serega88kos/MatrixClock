@@ -1,16 +1,16 @@
 void wifi_connected() {
   WiFi.mode(WIFI_STA);
   byte tries = 30;
-  WiFi.begin(w.ssid, w.pass);
+  WiFi.begin(c.ssid, c.pass);
   while (--tries && WiFi.status() != WL_CONNECTED) {
     Serial.print F(".");
     display->setFont(&asm_10x6);
     display->setTextWrap(false);
-    display->setTextColor(text_col);
+    display->setTextColor(col.text);
     display->setCursor(24, 21);
     display->print(tries);
     delay(1000);
-    display->fillScreen(black);
+    display->fillScreen(col.black);
   }
   if (WiFi.status() != WL_CONNECTED) {      // Если не удалось подключиться запускаем в режиме AP
     IPAddress apIP(192, 168, 4, 1);
@@ -35,7 +35,7 @@ void wifi_connected() {
     display->setCursor(4, 21);
     display->print(WiFi.localIP());
     delay(5000);
-    display->fillScreen(black);
+    display->fillScreen(col.black);
     ntp.setGMT(c.gmt);
     ntp.setHost(c.host);
     ntp.begin();

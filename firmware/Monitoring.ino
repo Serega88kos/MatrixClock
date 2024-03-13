@@ -1,4 +1,4 @@
-void NarodMonitoring() { //функция для народного мониторинга
+void Monitoring() { //функция для народного мониторинга
   WiFi.setAutoReconnect(true);
   String buf = "#" + WiFi.macAddress();
   // добавление и удаление датчиков по шаблону

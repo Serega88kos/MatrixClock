@@ -6,9 +6,9 @@ void Clock() {
     int m = ntp.minute();
     int m1 = m / 10;
     int m2 = m % 10;
-    display->fillRect(0, 12, 63, 31, black);
+    display->fillRect(0, 12, 63, 31, col.black);
     display->setFont(&asm_19x11);
-    display->setTextColor(clock_col);
+    display->setTextColor(col.clock);
     display->setCursor(6, 12);
     display->print(h1);  //первый символ часы
     display->setCursor(19, 12);
@@ -30,12 +30,12 @@ void Dots() {
   display->setFont(&asm_19x11);
   display->setCursor(31, 12);
   if (dot) {
-    display->setTextColor(clock_col);
+    display->setTextColor(col.clock);
     display->print(":");
     dot = !dot;
     return;
   } else {
-    display->setTextColor(black);
+    display->setTextColor(col.black);
     display->print(":");
     dot = !dot;
     return;
