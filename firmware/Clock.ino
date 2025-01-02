@@ -1,43 +1,98 @@
 void Clock() {
+  hour = ntp.hour();
+  int h1 = hour / 10;
+  int h2 = hour % 10;
+  int m = ntp.minute();
+  int m1 = m / 10;
+  int m2 = m % 10;
   if (ntp.minute() != old_time) {
-    int h = ntp.hour();
-    int h1 = h / 10;
-    int h2 = h % 10;
-    int m = ntp.minute();
-    int m1 = m / 10;
-    int m2 = m % 10;
-    display->fillRect(0, 12, 63, 31, col.black);
-    display->setFont(&asm_19x11);
-    display->setTextColor(col.clock);
-    display->setCursor(6, 12);
-    display->print(h1);  //первый символ часы
-    display->setCursor(19, 12);
-    display->print(h2);  //второй символ часы
-    display->setCursor(34, 12);
-    display->print(m1);  //первый символ минуты
-    display->setCursor(47, 12);
-    display->print(m2);  //второй символ минуты
-    Serial.println(ntp.timeString());
+    display->fillRect(0, 12, 30, 31, black);
+    display->fillRect(34, 12, 63, 31, black);
     old_time = m;
   }
+  display->setFont(&asm_19x11);
+  if (!flag_night) display->setTextColor(ColorTable[col.clock]);
+  display->setCursor(6, 12);
+  display->print(h1);  //первый символ часы
+  display->setCursor(19, 12);
+  display->print(h2);  //второй символ часы
+  display->setCursor(34, 12);
+  display->print(m1);  //первый символ минуты
+  display->setCursor(47, 12);
+  display->print(m2);  //второй символ минуты
+  //Serial.println(ntp.toString());
+  old_time = m;
+}
+
+void ClockNG() {
+  for (int i = 0; i < 64; i++) {
+    if (!flag_night) display->drawPixel(i, 0, display->color444(random(0, 255), random(0, 255), random(0, 255)));
+    if (!flag_night) display->drawPixel(i, 31, display->color444(random(0, 255), random(0, 255), random(0, 255)));
+  }
+  for (int j = 0; j < 32; j++) {
+    if (!flag_night) display->drawPixel(0, j, display->color444(random(0, 255), random(0, 255), random(0, 255)));
+    if (!flag_night) display->drawPixel(63, j, display->color444(random(0, 255), random(0, 255), random(0, 255)));
+  }
+  if (flag_night) display->drawRect(0, 0, 64, 32, black);
+  hour = ntp.hour();
+  int h1 = hour / 10;
+  int h2 = hour % 10;
+  int m = ntp.minute();
+  int m1 = m / 10;
+  int m2 = m % 10;
+  if (ntp.minute() != old_time) {
+    display->fillRect(0, 12, 30, 31, black);
+    display->fillRect(34, 12, 63, 31, black);
+    old_time = m;
+  }
+  display->setFont(&asm_19x11);
+  display->setCursor(6, 12);
+  if (!flag_night) display->setTextColor(display->color444(random(0, 255), random(0, 255), random(0, 255)));
+  display->print(h1);  //первый символ часы
+  display->setCursor(19, 12);
+  if (!flag_night) display->setTextColor(display->color444(random(0, 255), random(0, 255), random(0, 255)));
+  display->print(h2);  //второй символ часы
+  display->setCursor(34, 12);
+  if (!flag_night) display->setTextColor(display->color444(random(0, 255), random(0, 255), random(0, 255)));
+  display->print(m1);  //первый символ минуты
+  display->setCursor(47, 12);
+  if (!flag_night) display->setTextColor(display->color444(random(0, 255), random(0, 255), random(0, 255)));
+  display->print(m2);  //второй символ минуты
+  //Serial.println(ntp.toString());
+  old_time = m;
 }
 
 bool dot = true;
+static gh::Timer dots(500);
 void Dots() {
-  static uint32_t t = millis();
-  if (millis() - t < 500) return;
-  t = millis();
-  display->setFont(&asm_19x11);
-  display->setCursor(31, 12);
-  if (dot) {
-    display->setTextColor(col.clock);
-    display->print(":");
+  if (dots) {
     dot = !dot;
-    return;
-  } else {
-    display->setTextColor(col.black);
-    display->print(":");
-    dot = !dot;
-    return;
+    display->setFont(&asm_19x11);
+    display->setCursor(31, 12);
+    if (dot) {
+      if (!flag_night) display->setTextColor(display->color444(random(0, 255), random(0, 255), random(0, 255)));
+      display->print(":");
+    }
+    if (!dot) {
+      display->setTextColor(black);
+      display->print(":");
+    }
+  }
+}
+
+bool mods = true;
+void rezhim() {
+  static gh::Timer Ttime(o.interval * 1000);
+  if (Ttime) {
+    mods = !mods;
+    display->fillRect(1, 1, 63, 11, black);
+    if (mods) {
+      TempStreet();
+      Press();
+    }
+    if (!mods) {
+      TempHome();
+      if (o.sens_bme) Hum();
+    }
   }
 }

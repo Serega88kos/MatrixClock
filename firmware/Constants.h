@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#define VF "Serega88kos/MatrixClock@1.3"  // версия прошивки
+#define VF "Serega88kos/MatrixClock@1.4"  // версия прошивки
 //Настройки точки доступа, IP 192.168.4.1
 #define ssidAP "MatrixClock"
 #define passAP "administrator"  // не менее 8 символов
@@ -19,10 +19,6 @@ struct Clock {
 Clock c;
 
 struct Other {
-  float cor_tempH = 0;   // корректировка показаний датчика комнатной температуры
-  float cor_tempS = 0;   // корректировка показаний датчика уличной температуры
-  int cor_pres = 0;      // корректировка показаний датчика давления
-  int cor_hum = 0;       // корректировка показаний датчика влажности
   bool auto_bright;      // автоматическая подстройка яркости от уровня внешнего освещения (1 - включить, 0 - выключить)
   int min_bright = 10;   // минимальная яркость (0 - 255)
   int max_bright = 200;  // максимальная яркость (0 - 255)
@@ -30,6 +26,13 @@ struct Other {
   bool min_max = false;
   bool sens_bme = false;  // если модуль bme, то true, иначе false
   int interval = 5;
+  uint8_t mode_udp = 0;     // режим работы локального UDP для отправки показаний DS18B20
+  bool night_mode = 0;      // ночной режим
+  uint8_t start_night = 0;  // начало ночного режима в часах
+  uint8_t stop_night = 0;   // окончание ночного режима в часах
+  int night_brg = 10;       // яркость ночного режима
+  uint8_t night_color = 0;  // цвет ночного режима
+  bool new_god = 0;
 };
 Other o;
 
@@ -40,17 +43,19 @@ struct Monitoring {
   bool nm_tempS = false;   // включить отправку показаний уличной температуры
   bool nm_pres = false;    // включить отправку показаний давления
   bool nm_hum = false;     // включить отправку показаний влажности
+  float cor_tempH = 0;     // корректировка показаний датчика комнатной температуры
+  float cor_tempS = 0;     // корректировка показаний датчика уличной температуры
+  int cor_pres = 0;        // корректировка показаний датчика давления
+  int cor_hum = 0;         // корректировка показаний датчика влажности
 };
 Monitoring m;
 
 struct Color {
-  uint32_t minus = 0x00FFFF;
-  uint32_t clock = 0x00FFFF;
-  uint32_t home = 0xFFD300;
-  uint32_t street = 0x6363D1;
-  uint32_t press = 0xFC9607;
-  uint32_t hum = 0xBD35D3;
-  uint32_t text = 0xC5BBBB;
-  uint16_t black = 0x000000;
+  uint8_t clock = 3;
+  uint8_t home = 5;
+  uint8_t street = 0;
+  uint8_t press = 4;
+  uint8_t hum = 4;
+  uint8_t text = 2;
 };
 Color col;
