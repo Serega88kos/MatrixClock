@@ -1,8 +1,8 @@
 {
   "name": "MatrixClock",
   "about": "Большие часы на светодиодном модуле 64х32 с мониторингом",
-  "version": "1.3",
-  "notes": "Обновление GyverHub",
+  "version": "1.4",
+  "notes": "Крупное обновление!",
   "builds": [
     {
       "chipFamily": "ESP32",
