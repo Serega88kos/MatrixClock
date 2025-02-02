@@ -10,7 +10,7 @@ void wifi_connected() {
     display->setCursor(24, 21);
     display->print(tries);
     delay(1000);
-    display->fillScreen(black);
+    display->fillScreen(BLACK);
   }
   if (WiFi.status() != WL_CONNECTED) {  // Если не удалось подключиться запускаем в режиме AP
     IPAddress apIP(192, 168, 4, 1);
@@ -37,7 +37,7 @@ void wifi_connected() {
     display->setCursor(4, 21);
     display->print(WiFi.localIP());
     delay(2000);
-    display->fillScreen(black);
+    display->fillScreen(BLACK);
     ntp.setGMT(c.gmt);
     ntp.setHost(c.host);
     ntp.begin();
@@ -48,7 +48,7 @@ void wifi_connected() {
       display->setTextColor(GREEN);
       display->print("NTP_OK");
       delay(2000);
-      display->fillScreen(black);
+      display->fillScreen(BLACK);
     }
     if (ntp.getUnix() < 1735397200) {
       display->setCursor(20, 20);

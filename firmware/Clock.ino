@@ -6,8 +6,8 @@ void Clock() {
   int m1 = m / 10;
   int m2 = m % 10;
   if (ntp.minute() != old_time) {
-    display->fillRect(0, 12, 30, 31, black);
-    display->fillRect(34, 12, 63, 31, black);
+    display->fillRect(0, 12, 30, 31, BLACK);
+    display->fillRect(34, 12, 63, 31, BLACK);
     old_time = m;
   }
   display->setFont(&asm_19x11);
@@ -33,7 +33,7 @@ void ClockNG() {
     if (!flag_night) display->drawPixel(0, j, display->color444(random(0, 255), random(0, 255), random(0, 255)));
     if (!flag_night) display->drawPixel(63, j, display->color444(random(0, 255), random(0, 255), random(0, 255)));
   }
-  if (flag_night) display->drawRect(0, 0, 64, 32, black);
+  if (flag_night) display->drawRect(0, 0, 64, 32, BLACK);
   hour = ntp.hour();
   int h1 = hour / 10;
   int h2 = hour % 10;
@@ -41,8 +41,8 @@ void ClockNG() {
   int m1 = m / 10;
   int m2 = m % 10;
   if (ntp.minute() != old_time) {
-    display->fillRect(0, 12, 30, 31, black);
-    display->fillRect(34, 12, 63, 31, black);
+    display->fillRect(0, 12, 30, 31, BLACK);
+    display->fillRect(34, 12, 63, 31, BLACK);
     old_time = m;
   }
   display->setFont(&asm_19x11);
@@ -70,11 +70,16 @@ void Dots() {
     display->setFont(&asm_19x11);
     display->setCursor(31, 12);
     if (dot) {
-      if (!flag_night) display->setTextColor(display->color444(random(0, 255), random(0, 255), random(0, 255)));
+      if (o.new_god) {
+        if (!flag_night) display->setTextColor(display->color444(random(0, 255), random(0, 255), random(0, 255)));
+      }
+      if (!o.new_god) {
+        if (!flag_night) display->setTextColor(ColorTable[col.clock]);
+      }
       display->print(":");
     }
     if (!dot) {
-      display->setTextColor(black);
+      display->setTextColor(BLACK);
       display->print(":");
     }
   }
@@ -85,7 +90,7 @@ void rezhim() {
   static gh::Timer Ttime(o.interval * 1000);
   if (Ttime) {
     mods = !mods;
-    display->fillRect(1, 1, 63, 11, black);
+    display->fillRect(1, 1, 63, 11, BLACK);
     if (mods) {
       TempStreet();
       Press();

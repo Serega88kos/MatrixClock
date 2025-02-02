@@ -35,7 +35,7 @@ void TempStreet() {
   display->print("ul");
   display->setFont(&asm_10x6);
   if (!flag_night) display->setTextColor(ColorTable[col.street]);
-  display->setCursor(12, 9);
+  display->setCursor(10, 9);
   display->print(tempS);
 }
 

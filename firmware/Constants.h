@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#define VF "Serega88kos/MatrixClock@1.4"  // версия прошивки
+#define VF "Serega88kos/MatrixClock@1.5"  // версия прошивки
 //Настройки точки доступа, IP 192.168.4.1
 #define ssidAP "MatrixClock"
 #define passAP "administrator"  // не менее 8 символов
